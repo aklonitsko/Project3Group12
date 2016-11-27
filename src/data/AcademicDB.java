@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import academic.AcademicRecord;
 import client.Client;
 
 /**
