@@ -80,7 +80,7 @@ public class UserSelectorGUI extends JFrame
 		buttonPanel.add(new JPanel());
 		buttonPanel.add(okButton);
 		
-		//put everything in a grid panel
+		//put everything in a grid pane
 		selectPanel.setLayout(new GridLayout(7,0));
 		selectPanel.add(new JPanel());
 		selectPanel.add(selectText);
