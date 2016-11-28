@@ -8,7 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import client.Client;
+import academic.AcademicRecord;
+import student.Student;
 
 /**
  * This class contains methods to access the Student tables data.
@@ -21,7 +22,6 @@ import client.Client;
 public class StudentDB {
 
 	private Connection mConnection;
-	private List<Client> mStudentList;
 	
 	/**
 	 * Modifies the data on a student
@@ -33,15 +33,13 @@ public class StudentDB {
 	 */
 	public String updateStudent(Student student, String columnName, String data) {
 
-		int id = Integer.parseInt(student.getId());
-		String sql = "UPDATE Student SET `" + columnName + "` = ?  WHERE firstName = ? AND lastName = ? ";
+		String sql = "UPDATE Student SET `" + columnName + "` = ?  WHERE studentID = ?";
 		// For debugging - System.out.println(sql);
 		PreparedStatement preparedStatement = null;
 		try {
 			preparedStatement = mConnection.prepareStatement(sql);
 			preparedStatement.setString(1, data);
-			preparedStatement.setString(2, student.getFirstName); // for firtName=
-			preparedStatement.setString(3, student.getLastName);
+			preparedStatement.setInt(2, Integer.parseInt(student.getID()));
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e);
@@ -96,7 +94,7 @@ public class StudentDB {
 		Statement stmt = null;
 		String query = "select * " + "from Student";
 
-		mStudentList = new ArrayList<Student>();
+		List<Student> students = new ArrayList<Student>();
 		try {
 			stmt = mConnection.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
@@ -105,12 +103,12 @@ public class StudentDB {
 				String firstName = rs.getString("firstName");
 				String lastName = rs.getString("lastName");
 				Student student = new Student(firstName, lastName);
-				AcademicRecord = AcademicCollection.getAcademicRecord(id);
+				AcademicRecord record = AcademicCollection.getAcademicRecord(id);
 				student.setAcademicRecord(AcademicCollection.getAcademicRecord(id));
 				List<Employer> employers = EmployerCollection.getEmployers(id);
 				student.setEmployers(employers);
 				
-				mStudentList.add(student);
+				students.add(student);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -120,7 +118,7 @@ public class StudentDB {
 				stmt.close();
 			}
 		}
-		return mStudentList;
+		return students;
 	}
 
 //	/**
