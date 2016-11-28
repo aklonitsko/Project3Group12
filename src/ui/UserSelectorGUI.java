@@ -8,6 +8,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -28,6 +30,8 @@ public class UserSelectorGUI extends JFrame
 	static String staffString = "Staff";
 	static String facultyString = "Faculty";
 	static String jlblString = "Select What User You Are:";
+	static String myPropertyName = "user";
+	private String myOldPropertyValue;
 	
 	//Creating components 
 	JButton okButton = new JButton("OK");
@@ -38,10 +42,9 @@ public class UserSelectorGUI extends JFrame
 	JRadioButton facultyRButton = new JRadioButton(facultyString);
 	ButtonGroup groupRButton = new ButtonGroup();
 	
-	public static void main(String[]args){
-		UserSelectorGUI selectAccount= new UserSelectorGUI();
-		
-	}
+//	public static void main(String[]args){
+//		UserSelectorGUI selectAccount= new UserSelectorGUI();	
+//	}
 	
 	
 	public UserSelectorGUI(){
@@ -87,28 +90,33 @@ public class UserSelectorGUI extends JFrame
 		selectPanel.add(new JPanel());
 		selectPanel.add(radioPanel);
 		selectPanel.add(new JPanel());
-		selectPanel.add(buttonPanel);
+		//selectPanel.add(buttonPanel);
 		
 		
 		setSize(300,160);
-		setLocation(500,280);
-		
-		
+		setLocationRelativeTo(null);
 		
 		
 		getContentPane().add(selectPanel);
 		//getContentPane().add(okButton);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
+		groupRButton.clearSelection();
 	}
 
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		//Debug only
+		System.out.println(((JRadioButton)e.getSource()).getText());
+		String newValue = ((JRadioButton)e.getSource()).getText();
 		
+		//Fire property change
+		this.firePropertyChange(myPropertyName, myOldPropertyValue, newValue);
+		myOldPropertyValue = newValue;
+		
+		this.setVisible(false);
 	}
-	
 	
 
 }
