@@ -14,16 +14,18 @@ public class AcademicRecord {
 	
 	private String myID;
 	private String myProgram;
+	private String myDegreeLevel;
 	private String myGraduationTerm;
 	private String myGraduationYear;
 	private String myUWEmail;
 	private String myExternalEmail;
 	private double myGPA;
-	private List<TransferSchool> myPreviousSchools;
+	private List<TransferSchool> myTransferSchools;
 	
-	public AcademicRecord(String theProgram, String theGraduationTerm, String theGraduationYear,
+	public AcademicRecord(String theProgram, String theDegreeLevel, String theGraduationTerm, String theGraduationYear,
 			String theUWEmail, String theExternalEmail, double theGPA){
 		this.setProgram(theProgram);
+		this.setDegreeLevel(theDegreeLevel);
 		this.setGraduationTerm(theGraduationTerm);
 		this.setGraduationYear(theGraduationYear);
 		this.setUWEmail(theUWEmail);
@@ -31,13 +33,13 @@ public class AcademicRecord {
 		this.setGPA(theGPA);
 	}
 	
-	public AcademicRecord(String theProgram, String theGraduationTerm, String theGraduationYear,
-			String theUWEmail, String theExternalEmail, double theGPA, List<TransferSchool> thePreviousSchools){
+	public AcademicRecord(String theProgram, String theDegreeLevel, String theGraduationTerm, String theGraduationYear,
+			String theUWEmail, String theExternalEmail, double theGPA, List<TransferSchool> theTransferSchools){
 		//Chained Constructor
-		this(theProgram, theGraduationTerm, theGraduationYear,
+		this(theProgram, theDegreeLevel, theGraduationTerm, theGraduationYear,
 			theUWEmail, theExternalEmail,theGPA);
 		
-		this.setPreviousSchools(thePreviousSchools);
+		this.setTransferSchools(theTransferSchools);
 	}
 	
 	public String getID() {
@@ -96,16 +98,24 @@ public class AcademicRecord {
 		this.myGPA = myGPA;
 	}
 
-	public List<TransferSchool> getPreviousSchools() {
-		return myPreviousSchools;
+	public List<TransferSchool> getTransferSchools() {
+		return myTransferSchools;
 	}
 	
-	public void setPreviousSchools(List<TransferSchool> thePreviousSchools) {
-		myPreviousSchools = thePreviousSchools;
+	public void setTransferSchools(List<TransferSchool> thePreviousSchools) {
+		myTransferSchools = thePreviousSchools;
 	}
 
 	public void addTransferSchool(TransferSchool theTransferSchool){
-		myPreviousSchools.add(theTransferSchool);
+		myTransferSchools.add(theTransferSchool);
+	}
+
+	public String getDegreeLevel() {
+		return myDegreeLevel;
+	}
+
+	public void setDegreeLevel(String myDegreeLevel) {
+		this.myDegreeLevel = myDegreeLevel;
 	}
 
 }
