@@ -12,110 +12,120 @@ import java.util.List;
  */
 public class AcademicRecord {
 	
-	private String myID;
-	private String myProgram;
-	private String myDegreeLevel;
-	private String myGraduationTerm;
-	private String myGraduationYear;
-	private String myUWEmail;
-	private String myExternalEmail;
-	private double myGPA;
-	private List<TransferSchool> myTransferSchools;
+	private String mID;
+	private String mStudentID;
+	private String mProgram;
+	private String mDegreeLevel;
+	private String mGraduationTerm;
+	private String mGraduationYear;
+	private String mUWEmail;
+	private String mExternalEmail;
+	private double mGPA;
+	private List<TransferSchool> mTransferSchools;
 	
-	public AcademicRecord(String theProgram, String theDegreeLevel, String theGraduationTerm, String theGraduationYear,
-			String theUWEmail, String theExternalEmail, double theGPA){
-		this.setProgram(theProgram);
-		this.setDegreeLevel(theDegreeLevel);
-		this.setGraduationTerm(theGraduationTerm);
-		this.setGraduationYear(theGraduationYear);
-		this.setUWEmail(theUWEmail);
-		this.setExternalEmail(theExternalEmail);
-		this.setGPA(theGPA);
+	public AcademicRecord(String studentID, String program, String degreeLevel, String graduationTerm, String graduationYear,
+			String uwEmail, String externalEmail, double GPA){
+		this.setStudentID(studentID);
+		this.setProgram(program);
+		this.setDegreeLevel(degreeLevel);
+		this.setGraduationTerm(graduationTerm);
+		this.setGraduationYear(graduationYear);
+		this.setUWEmail(uwEmail);
+		this.setExternalEmail(externalEmail);
+		this.setGPA(GPA);
 	}
 	
-	public AcademicRecord(String theProgram, String theDegreeLevel, String theGraduationTerm, String theGraduationYear,
+	public AcademicRecord(String studentID, String theProgram, String theDegreeLevel, String theGraduationTerm, String theGraduationYear,
 			String theUWEmail, String theExternalEmail, double theGPA, List<TransferSchool> theTransferSchools){
 		//Chained Constructor
-		this(theProgram, theDegreeLevel, theGraduationTerm, theGraduationYear,
+		this(studentID, theProgram, theDegreeLevel, theGraduationTerm, theGraduationYear,
 			theUWEmail, theExternalEmail,theGPA);
 		
 		this.setTransferSchools(theTransferSchools);
 	}
 	
 	public String getID() {
-		return myID;
+		return mID;
 	}
 
 	public void setID(String myID) {
-		this.myID = myID;
+		this.mID = myID;
 	}
 
 	public String getProgram() {
-		return myProgram;
+		return mProgram;
 	}
 
 	public void setProgram(String myProgram) {
-		this.myProgram = myProgram;
+		this.mProgram = myProgram;
 	}
 
 	public String getGraduationTerm() {
-		return myGraduationTerm;
+		return mGraduationTerm;
 	}
 
 	public void setGraduationTerm(String myGraduationTerm) {
-		this.myGraduationTerm = myGraduationTerm;
+		this.mGraduationTerm = myGraduationTerm;
 	}
 
 	public String getGraduationYear() {
-		return myGraduationYear;
+		return mGraduationYear;
 	}
 
 	public void setGraduationYear(String myGraduationYear) {
-		this.myGraduationYear = myGraduationYear;
+		this.mGraduationYear = myGraduationYear;
 	}
 
 	public String getUWEmail() {
-		return myUWEmail;
+		return mUWEmail;
 	}
 
 	public void setUWEmail(String myUWEmail) {
-		this.myUWEmail = myUWEmail;
+		this.mUWEmail = myUWEmail;
 	}
 
 	public String getExternalEmail() {
-		return myExternalEmail;
+		return mExternalEmail;
 	}
 
 	public void setExternalEmail(String myExternalEmail) {
-		this.myExternalEmail = myExternalEmail;
+		this.mExternalEmail = myExternalEmail;
 	}
 
 	public double getGPA() {
-		return myGPA;
+		return mGPA;
 	}
 
 	public void setGPA(double myGPA) {
-		this.myGPA = myGPA;
+		this.mGPA = myGPA;
 	}
 
 	public List<TransferSchool> getTransferSchools() {
-		return myTransferSchools;
+		return mTransferSchools;
 	}
 	
 	public void setTransferSchools(List<TransferSchool> thePreviousSchools) {
-		myTransferSchools = thePreviousSchools;
+		mTransferSchools = thePreviousSchools;
 	}
 
 	public void addTransferSchool(TransferSchool theTransferSchool){
-		myTransferSchools.add(theTransferSchool);
+		mTransferSchools.add(theTransferSchool);
 	}
 
 	public String getDegreeLevel() {
-		return myDegreeLevel;
+		return mDegreeLevel;
 	}
 
 	public void setDegreeLevel(String myDegreeLevel) {
-		this.myDegreeLevel = myDegreeLevel;
+		this.mDegreeLevel = myDegreeLevel;
+	}
+
+	public String getStudentID() {
+		return mStudentID;
+	}
+
+	public void setStudentID(String studentID) {
+		this.mStudentID = studentID;
 	}
 
 }
