@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import academic.AcademicCollection;
 import academic.AcademicRecord;
 import employment.Employer;
 import student.Student;
@@ -93,7 +94,7 @@ public class StudentDB {
 			mConnection = DataConnection.getConnection();
 		}
 		Statement stmt = null;
-		String query = "select * " + "from Student";
+		String query = "SELECT * " + "FROM Student";
 
 		List<Student> students = new ArrayList<Student>();
 		try {
@@ -104,10 +105,11 @@ public class StudentDB {
 				String firstName = rs.getString("firstName");
 				String lastName = rs.getString("lastName");
 				Student student = new Student(firstName, lastName);
-				AcademicRecord record = AcademicCollection.getAcademicRecord(id);
-				student.setAcademicRecord(AcademicCollection.getAcademicRecord(id));
-				List<Employer> employers = EmployerCollection.getEmployers(id);
-				student.setEmployers(employers);
+				student.setID(Integer.toString(id));
+				AcademicRecord record = AcademicCollection.getAcademicRecord(Integer.toString(id));
+				student.setAcademicRecord(record);
+				//List<Employer> employers = EmployerCollection.getEmployers(id);
+				//student.setEmployers(employers);
 				
 				students.add(student);
 			}
@@ -135,26 +137,26 @@ public class StudentDB {
 		if (mConnection == null) {
 			mConnection = DataConnection.getConnection();
 		}
-		PreparedStatement stmt = null;
+		PreparedStatement preparedStmt = null;
 		String query = "SELECT * " + "FROM Student WHERE firstName = ? AND lastName = ?";
 
 		List<Student> students = new ArrayList<Student>();
 		try {
-			stmt = mConnection.prepareStatement(query);
-			stmt.setString(1, firstName);
-			stmt.setString(2, lastName);
+			preparedStmt = mConnection.prepareStatement(query);
+			preparedStmt.setString(1, firstName);
+			preparedStmt.setString(2, lastName);
+			ResultSet rs = preparedStmt.executeQuery();
 			
-			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				int id = rs.getInt("studentID");
 				String returnFirstName = rs.getString("firstName");
 				String returnLastName = rs.getString("lastName");
 				Student student = new Student(returnFirstName, returnLastName);
 				student.setID(Integer.toString(id));
-				AcademicRecord record = AcademicCollection.getAcademicRecord(id);
-				student.setAcademicRecord(AcademicCollection.getAcademicRecord(id));
-				List<Employer> employers = EmployerCollection.getEmployers(id);
-				student.setEmployers(employers);
+				AcademicRecord record = AcademicCollection.getAcademicRecord(Integer.toString(id));
+				student.setAcademicRecord(record);
+				//List<Employer> employers = EmployerCollection.getEmployers(id);
+				//student.setEmployers(employers);
 				
 				students.add(student);
 			}
@@ -162,8 +164,8 @@ public class StudentDB {
 			e.printStackTrace();
 			System.out.println(e);
 		} finally {
-			if (stmt != null) {
-				stmt.close();
+			if (preparedStmt != null) {
+				preparedStmt.close();
 			}
 		}
 		return students;
@@ -181,37 +183,38 @@ public class StudentDB {
 		if (mConnection == null) {
 			mConnection = DataConnection.getConnection();
 		}
-		PreparedStatement stmt = null;
-		String query = "SELECT Student.*, uwEmail FROM Student WHERE uwEmail = ? JOIN AcademicRecord ON Student.studentID = AcademicRecord.studentID";
+		PreparedStatement preparedStmt = null;
+		String query = "SELECT Student.*, uwEmail FROM Student JOIN AcademicRecord ON Student.studentID = AcademicRecord.studentID WHERE uwEmail = ? ";
 
-		Student students = null;
+		Student student = null;
 		try {
-			stmt = mConnection.prepareStatement(query);
-			stmt.setString(1, uwEmail);
+			preparedStmt = mConnection.prepareStatement(query);
+			preparedStmt.setString(1, uwEmail);
+			ResultSet rs = preparedStmt.executeQuery();
 			
-			ResultSet rs = stmt.executeQuery(query);
-			while (rs.next()) {
+			if (rs.next()) {
 				int id = rs.getInt("studentID");
 				String returnFirstName = rs.getString("firstName");
 				String returnLastName = rs.getString("lastName");
-				Student student = new Student(returnFirstName, returnLastName);
+				student = new Student(returnFirstName, returnLastName);
 				student.setID(Integer.toString(id));
-				AcademicRecord record = AcademicCollection.getAcademicRecord(id);
-				student.setAcademicRecord(AcademicCollection.getAcademicRecord(id));
-				List<Employer> employers = EmployerCollection.getEmployers(id);
-				student.setEmployers(employers);
+				AcademicRecord record = AcademicCollection.getAcademicRecord(Integer.toString(id));
+				student.setAcademicRecord(record);
 				
-				students.add(student);
+				//List<Employer> employers = EmployerCollection.getEmployers(id);
+				//student.setEmployers(employers);
+				
+				return student;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println(e);
 		} finally {
-			if (stmt != null) {
-				stmt.close();
+			if (preparedStmt != null) {
+				preparedStmt.close();
 			}
 		}
-		return students;
+		return student;
 	}
 
 //	/**

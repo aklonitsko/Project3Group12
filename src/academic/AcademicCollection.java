@@ -94,6 +94,30 @@ public class AcademicCollection {
 		}
 		return true;
 	}
+	
+	/**
+	 * Deletes the particular transfer school 
+	 * 
+	 * @param school
+	 *            Transfer school to delete
+	 * @return true or false
+	 */
+	public static boolean update(TransferSchool school) {
+		if (mAcademicDB == null) {
+			mAcademicDB = new AcademicDB();
+		}
+		
+		//Handle no school or no ID
+		if (school == null || school.getID() == null){
+			return false;
+		}
+		String message = mAcademicDB.deleteTransferSchool(school);
+		if (message.startsWith("Error deleting transfer school: ")) {
+			return false;
+		}
+		return true;
+	}
+
 
 	/**
 	 * 
