@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import academic.AcademicCollection;
 import academic.AcademicRecord;
 import employment.Employer;
 import student.Student;

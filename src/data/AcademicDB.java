@@ -112,7 +112,7 @@ public class AcademicDB {
 		try {
 			stmt = mConnection.prepareStatement(query);
 			stmt.setInt(1, Integer.parseInt(studentID));
-			ResultSet rs = stmt.executeQuery(query);
+			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				int id = rs.getInt("academicID");
 				int resultStudentID = rs.getInt("studentID");
@@ -242,7 +242,7 @@ public class AcademicDB {
 		try {
 			stmt = mConnection.prepareStatement(query);
 			stmt.setInt(1, intTransferID);
-			ResultSet rs = stmt.executeQuery(query);
+			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				int returnTransferID = rs.getInt("transferID");
 				int academicID = rs.getInt("academicID");
@@ -277,13 +277,14 @@ public class AcademicDB {
 		if (mConnection == null) {
 			mConnection = DataConnection.getConnection();
 		}
-		Statement stmt = null;
+		PreparedStatement preparedStmt = null;
 		int academicID = Integer.parseInt(recordID);
-		String query = "SELECT * FROM TransferSchool WHERE academicID = " + academicID;
+		String query = "SELECT * FROM TransferSchool WHERE academicID = ?";
 		List<TransferSchool> schools = new ArrayList<TransferSchool>();
 		try {
-			stmt = mConnection.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
+			preparedStmt = mConnection.prepareStatement(query);
+			preparedStmt.setInt(1, academicID);
+			ResultSet rs = preparedStmt.executeQuery();
 			while (rs.next()) {
 				int transferID = rs.getInt("transferID");
 				academicID = rs.getInt("academicID");
@@ -299,8 +300,8 @@ public class AcademicDB {
 			e.printStackTrace();
 			System.out.println(e);
 		} finally {
-			if (stmt != null) {
-				stmt.close();
+			if (preparedStmt != null) {
+				preparedStmt.close();
 			}
 		}
 		

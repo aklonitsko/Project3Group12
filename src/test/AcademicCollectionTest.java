@@ -5,11 +5,15 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import academic.AcademicCollection;
 import academic.AcademicRecord;
+import academic.TransferSchool;
 
 /**
  * @author Andrew,Brandon,Brian
@@ -31,6 +35,7 @@ public class AcademicCollectionTest {
 	/**
 	 * Test method for {@link academic.AcademicCollection#add(academic.AcademicRecord)}.
 	 */
+	@Ignore
 	@Test
 	public void testAddAcademicRecord() {
 		assertTrue(AcademicCollection.add(mRecord));
@@ -41,7 +46,9 @@ public class AcademicCollectionTest {
 	 */
 	@Test
 	public void testAddTransferSchool() {
-		fail("Not yet implemented");
+		TransferSchool school = new TransferSchool("autoTest", 1.0, "NA");
+		school.setAcademicID("1");
+		assertTrue(AcademicCollection.add(school));
 	}
 
 	/**
@@ -65,7 +72,9 @@ public class AcademicCollectionTest {
 	 */
 	@Test
 	public void testGetAcademicRecordString() {
-		fail("Not yet implemented");
+		AcademicRecord record = AcademicCollection.getAcademicRecord("1");
+		System.out.println(record.getID() + " " + record.getStudentID() + " " + record.getProgram() + " " + record.getGPA() + " " + record.getTransferSchools());
+		assertNotNull(record);
 	}
 
 	/**
@@ -73,7 +82,11 @@ public class AcademicCollectionTest {
 	 */
 	@Test
 	public void testGetAcademicRecord() {
-		fail("Not yet implemented");
+		List<AcademicRecord> records = AcademicCollection.getAcademicRecord();
+		for (AcademicRecord record : records){
+			System.out.println(record.getID() + " " + record.getStudentID() + " " + record.getProgram() + " " + record.getGPA() + " " + record.getTransferSchools());
+		}
+		assertNotNull(records);
 	}
 
 	/**
@@ -81,7 +94,12 @@ public class AcademicCollectionTest {
 	 */
 	@Test
 	public void testGetTransferSchoolsString() {
-		fail("Not yet implemented");
+		List<TransferSchool> schools = AcademicCollection.getTransferSchools("1");
+		for (TransferSchool school : schools){
+			//Debug
+			System.out.println(school.getID() + " " + school.getAcademicID() + " " + school.getName() + " " + school.getGPA());
+		}
+		assertNotNull(schools);
 	}
 
 	/**
@@ -89,7 +107,12 @@ public class AcademicCollectionTest {
 	 */
 	@Test
 	public void testGetTransferSchools() {
-		fail("Not yet implemented");
+		List<TransferSchool> schools = AcademicCollection.getTransferSchools();
+		for (TransferSchool school : schools){
+			//Debug
+			System.out.println(school.getID() + " " + school.getAcademicID() + " " + school.getName() + " " + school.getGPA());
+		}
+		assertNotNull(schools);
 	}
 
 	/**
@@ -97,7 +120,10 @@ public class AcademicCollectionTest {
 	 */
 	@Test
 	public void testGetTransferSchool() {
-		fail("Not yet implemented");
+		TransferSchool school = AcademicCollection.getTransferSchool("1");
+		//Debug
+		System.out.println(school.getID() + " " + school.getAcademicID() + " " + school.getName() + " " + school.getGPA());
+		assertNotNull(school);
 	}
 
 }
