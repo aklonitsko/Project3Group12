@@ -394,7 +394,7 @@ public class AcademicDB {
 	 *         the sql exception.
 	 */
 	public String deleteTransferSchool(TransferSchool school) {
-		String sql = "DELETE FROM TransferSchool WHERE transferID = " + Integer.parseInt(school.getID());
+		String sql = "DELETE FROM TransferSchool WHERE transferID = ?";
 
 		if (mConnection == null) {
 			try {
@@ -407,10 +407,7 @@ public class AcademicDB {
 		PreparedStatement preparedStatement = null;
 		try {
 			preparedStatement = mConnection.prepareStatement(sql);
-			preparedStatement.setInt(1, Integer.parseInt(school.getAcademicID()));
-			preparedStatement.setString(2, school.getName());
-			preparedStatement.setDouble(3, school.getGPA());
-			preparedStatement.setString(4, school.getDegreeEarned());
+			preparedStatement.setInt(1, Integer.parseInt(school.getID()));
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
