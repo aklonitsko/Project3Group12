@@ -3,9 +3,13 @@
  */
 package student;
 
+<<<<<<< HEAD
+import java.util.ArrayList;
+=======
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+>>>>>>> 9840fc700c75e6cb811d47af837db4ee3655df33
 
 import data.StudentDB;
 
@@ -15,6 +19,29 @@ import data.StudentDB;
  */
 public class StudentCollection {
 
+<<<<<<< HEAD
+	private StudentDB myStudentDB;
+	private ArrayList<Student> myStudentList;
+	
+	public StudentCollection() {
+		
+		myStudentDB = new StudentDB();
+		myStudentList = new ArrayList<Student>();
+	}
+	
+	public boolean addStudent(String theName) {
+		
+		boolean flag = false;
+		
+		try {
+			
+		} catch(Exception e) {
+			
+		}
+	}
+	
+	
+=======
 	private static StudentDB mStudentDB;
 
 	/**
@@ -98,6 +125,7 @@ public class StudentCollection {
 		return true;
 	}
 
+>>>>>>> 9840fc700c75e6cb811d47af837db4ee3655df33
 
 	/**
 	 * Return all students in the DB, null otherwise.

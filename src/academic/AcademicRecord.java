@@ -4,7 +4,7 @@ Brandon Gibbons
  */
 package academic;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * @author Andrew,Brandon,Brian
@@ -12,6 +12,16 @@ import java.util.List;
  */
 public class AcademicRecord {
 	
+<<<<<<< HEAD
+	private String myID;
+	private String myProgram;
+	private String myGraduationTerm;
+	private String myGraduationYear;
+	private String myUWEmail;
+	private String myExternalEmail;
+	private double myGPA;
+	private ArrayList<TransferSchool> myPreviousSchools;
+=======
 	private String mID;
 	private String mStudentID;
 	private String mProgram;
@@ -22,6 +32,7 @@ public class AcademicRecord {
 	private String mExternalEmail;
 	private double mGPA;
 	private List<TransferSchool> mTransferSchools;
+>>>>>>> 9840fc700c75e6cb811d47af837db4ee3655df33
 	
 	public AcademicRecord(String studentID, String program, String degreeLevel, String graduationTerm, String graduationYear,
 			String uwEmail, String externalEmail, double GPA){
@@ -35,8 +46,13 @@ public class AcademicRecord {
 		this.setGPA(GPA);
 	}
 	
+<<<<<<< HEAD
+	public AcademicRecord(String theProgram, String theGraduationTerm, String theGraduationYear,
+			String theUWEmail, String theExternalEmail, double theGPA, ArrayList<TransferSchool> thePreviousSchools){
+=======
 	public AcademicRecord(String studentID, String theProgram, String theDegreeLevel, String theGraduationTerm, String theGraduationYear,
 			String theUWEmail, String theExternalEmail, double theGPA, List<TransferSchool> theTransferSchools){
+>>>>>>> 9840fc700c75e6cb811d47af837db4ee3655df33
 		//Chained Constructor
 		this(studentID, theProgram, theDegreeLevel, theGraduationTerm, theGraduationYear,
 			theUWEmail, theExternalEmail,theGPA);
@@ -100,6 +116,30 @@ public class AcademicRecord {
 		this.mGPA = myGPA;
 	}
 
+<<<<<<< HEAD
+	public ArrayList<TransferSchool> getPreviousSchools() {
+		return myPreviousSchools;
+	}
+	
+	public void setPreviousSchools(ArrayList<TransferSchool> thePreviousSchools) {
+		myPreviousSchools = thePreviousSchools;
+	}
+
+	public boolean addTransferSchool(TransferSchool theTransferSchool){
+		
+		boolean flag = false;
+		
+		try {
+			
+			myPreviousSchools.add(theTransferSchool);
+			flag = true;
+		} catch(Exception e) {
+			
+			flag = false;
+		}
+		
+		return flag;
+=======
 	public List<TransferSchool> getTransferSchools() {
 		return mTransferSchools;
 	}
@@ -126,6 +166,7 @@ public class AcademicRecord {
 
 	public void setStudentID(String studentID) {
 		this.mStudentID = studentID;
+>>>>>>> 9840fc700c75e6cb811d47af837db4ee3655df33
 	}
 
 }
