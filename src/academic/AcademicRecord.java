@@ -4,7 +4,7 @@ Brandon Gibbons
  */
 package academic;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * @author Andrew,Brandon,Brian
@@ -19,7 +19,7 @@ public class AcademicRecord {
 	private String myUWEmail;
 	private String myExternalEmail;
 	private double myGPA;
-	private List<TransferSchool> myPreviousSchools;
+	private ArrayList<TransferSchool> myPreviousSchools;
 	
 	public AcademicRecord(String theProgram, String theGraduationTerm, String theGraduationYear,
 			String theUWEmail, String theExternalEmail, double theGPA){
@@ -32,7 +32,7 @@ public class AcademicRecord {
 	}
 	
 	public AcademicRecord(String theProgram, String theGraduationTerm, String theGraduationYear,
-			String theUWEmail, String theExternalEmail, double theGPA, List<TransferSchool> thePreviousSchools){
+			String theUWEmail, String theExternalEmail, double theGPA, ArrayList<TransferSchool> thePreviousSchools){
 		//Chained Constructor
 		this(theProgram, theGraduationTerm, theGraduationYear,
 			theUWEmail, theExternalEmail,theGPA);
@@ -96,16 +96,28 @@ public class AcademicRecord {
 		this.myGPA = myGPA;
 	}
 
-	public List<TransferSchool> getPreviousSchools() {
+	public ArrayList<TransferSchool> getPreviousSchools() {
 		return myPreviousSchools;
 	}
 	
-	public void setPreviousSchools(List<TransferSchool> thePreviousSchools) {
+	public void setPreviousSchools(ArrayList<TransferSchool> thePreviousSchools) {
 		myPreviousSchools = thePreviousSchools;
 	}
 
-	public void addTransferSchool(TransferSchool theTransferSchool){
-		myPreviousSchools.add(theTransferSchool);
+	public boolean addTransferSchool(TransferSchool theTransferSchool){
+		
+		boolean flag = false;
+		
+		try {
+			
+			myPreviousSchools.add(theTransferSchool);
+			flag = true;
+		} catch(Exception e) {
+			
+			flag = false;
+		}
+		
+		return flag;
 	}
 
 }
