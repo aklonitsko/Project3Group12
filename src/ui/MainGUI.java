@@ -2,7 +2,7 @@
  * 
  * Brandon Gibbons
  * 
- * 
+ * andrew Klonitsko
  * Brian Lloyd
  */
 package ui;
@@ -20,7 +20,9 @@ import javax.swing.JTabbedPane;
  */
 public class MainGUI extends JFrame implements PropertyChangeListener {
 
-	JTabbedPane myTabbedPane;
+
+	private static final long serialVersionUID = 1L;
+	private JTabbedPane myTabbedPane;
 
 	public static void main(String[] args) {
 		MainGUI frame = new MainGUI();

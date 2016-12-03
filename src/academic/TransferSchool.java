@@ -9,6 +9,8 @@ package academic;
  */
 public class TransferSchool {
 	
+	private String myID;
+	private String myAcademicID;
 	private String myName;
 	private double myGPA;
 	private String myDegreeEarned;
@@ -37,6 +39,22 @@ public class TransferSchool {
 	}
 	public void setDegreeEarned(String myDegreeEarned) {
 		this.myDegreeEarned = myDegreeEarned;
+	}
+
+	public String getAcademicID() {
+		return myAcademicID;
+	}
+
+	public void setAcademicID(String theAcademicID) {
+		this.myAcademicID = theAcademicID;
+	}
+
+	public String getID() {
+		return myID;
+	}
+
+	public void setID(String theID) {
+		this.myID = theID;
 	}
 	
 
