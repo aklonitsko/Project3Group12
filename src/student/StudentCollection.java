@@ -4,6 +4,8 @@
 package student;
 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 import java.util.ArrayList;
 =======
 import java.sql.SQLException;
@@ -13,12 +15,15 @@ import java.util.List;
 
 import data.StudentDB;
 
+>>>>>>> branch 'master' of https://github.com/gibbbran/Project3Group12
 /**
  * @author Andrew,Brandon,Brian
  *
  */
 public class StudentCollection {
 
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 	private StudentDB myStudentDB;
 	private ArrayList<Student> myStudentList;
@@ -43,6 +48,7 @@ public class StudentCollection {
 	
 =======
 	private static StudentDB mStudentDB;
+>>>>>>> branch 'master' of https://github.com/gibbbran/Project3Group12
 
 	/**
 	 * Return a list of students that have the first name and last name.
